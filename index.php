@@ -1,5 +1,4 @@
 <?php
-
 require 'Form.php';
 ?>
 
@@ -12,27 +11,35 @@ require 'Form.php';
 		<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
 <body>
-    <div>
-        <form class='form' action="#" method="post">
+    <div class="titleDiv">
+            <h1>Calculez vos impôts gratuitement</h3>
+    </div>
+
+    <div class="container">
+        <form class='form' method="post" class="form">
+
             <div class='formInput'>
-                <label>Nom</label>
-                <input type='text' name='name' value="<?=$name;?>" required>
+                <label>Nom :</label>
+                <input type='text' name='name' placeholder="Veuillez renseigner votre identité" required>
             </div>
             <div class='formInput'>
-                <label>Revenu de l'année passée en €</label>
-                <input type='number' name='revenu' value="<?=$revenu;?>"required>
+                <label>Revenu de l'année passée en € :</label>
+                <input type='text' id="revenu" step="1.0" name='revenu' placeholder="...€" required>
             </div>
             <div class='formInput'>
-                <label>Travaux engagés dans l'année en €</label>
-                <input type='number' name='work' value="<?=$work;?>"required>
+                <label>Travaux engagés dans l'année en € :</label>
+                <input type='text' id="work"  step="1.0" name='work' placeholder="...€" required>
             </div>
             <div class='formInput'>
                 <label>Dons et mécénas réalisés en €</label>
-                <input type='number' name='don' value="<?=$don;?>"required>
+                <input type='text' id="don" step="1.0" name='don' placeholder="...€" required>
             </div>
-            <button type="submit" name="button" value="button">Calculez</button>
+            <button type="submit" name="button" class='subButton'>Calculez</button>
         </form>
+
     </div>
+    <script>
+    </script>
 </body>
 
 </html>

@@ -19,44 +19,26 @@ class Form {
 
     }
 
-    // public function inputText($text) {
-    //     return (
-    //         '<input type="text" name="' . $text . '" value="' . $this->getValue($text) . '">'
-    //     );
-    // }
-
-    // public function inputNumber($number) {
-    //     return (
-    //         '<input type="number" name="' . $number . '" value="' . $this->getValue($number) . '">'
-    //     );
-    // }
-
-    public function submit() {
-        return '<button type="submit" name="button" value="button">Calculez</button>';
-    }
-
     public function calculDons($don) {
 
         $donCalc = (self::percentDon / 100) * $don;
 
         if($donCalc >= 2000){
 
-            $donCalc = 2000;
+            $don = 2000;
 
-        } else {
+        }else{
 
-            $donCalc = $don;
+            $don = $donCalc;
 
         }
 
-        return $donCalc;
+        return $don;
     }
 
     public function calculWorks($work) {
-        //public const maxWorks = 8000;
         if ($work >= 8000) {
 
-            // $workCalc = $this->_revenu - 8000;
             $work = 8000;
 
         }
@@ -66,22 +48,31 @@ class Form {
 
     public function calculImpots($work,$don,$revenu) {
         
-        Form::calculWorks($work);
-        Form::calculDons($don);
+        $work = Form::calculWorks($work);
+        $don = Form::calculDons($don);
         
         $revenuCalc = $revenu - $don - $work;
+        $maxRevenu = 15000;
 
-        if ($revenuCalc > 15000){
+        $taxeBasse = (self::lowTax / 100) * $revenuCalc;
 
-            $highTaxCalc = $revenuCalc - 15000;
 
-            $highTax = $highTaxCalc * self::highTax;
+        if ($revenuCalc > $maxRevenu){
+
+            $diff = $revenuCalc - $maxRevenu;
+
+            $taxeHaute = (self::highTax / 100) * $diff;
+            $taxeBasse = (self::lowTax / 100) * $maxRevenu;
+
+            $impotFinal = $taxeBasse + $taxeHaute;
 
         } else {
 
-            $lowTax = $revenuCalc * self::lowTax;
+            $impotFinal = $taxeBasse;
 
         }
+
+        return $impotFinal;
         
     }
 }
@@ -96,4 +87,5 @@ if(isset($_POST['button'])) {
     $impot = new form($name,$revenu,$don,$work);
     echo "<p>après réduction des travaux effectués = ". $impot->calculWorks($work). "</p>";
     echo "<p>après réduction des dons effectués = ". $impot->calculDons($don). "</p>";
+    echo "<p>Vous devez payer = ". $impot->calculImpots($work,$don,$revenu). " €</p>";
 }
