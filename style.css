@@ -1,0 +1,12 @@
+.form{
+
+    display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 800px;
+	min-width: 300px;
+}
+
+.formInput{
+    display: grid;
+}
