@@ -76,16 +76,17 @@ class Form {
         
     }
 }
-
+    
 if(isset($_POST['button'])) {
-
     $name = $_POST['name'];
     $revenu = $_POST['revenu'];
     $don = $_POST['don'];
     $work = $_POST['work'];
 
     $impot = new form($name,$revenu,$don,$work);
+    echo "<div class='message_box' style='margin:10px 0px;'></div>";
     echo "<p>après réduction des travaux effectués = ". $impot->calculWorks($work). "</p>";
     echo "<p>après réduction des dons effectués = ". $impot->calculDons($don). "</p>";
     echo "<p>Vous devez payer = ". $impot->calculImpots($work,$don,$revenu). " €</p>";
 }
+

@@ -16,7 +16,7 @@ require 'Form.php';
     </div>
 
     <div class="container">
-        <form class='form' method="post" class="form">
+        <form class='form'action='<?= $_SERVER['PHP_SELF']; ?>' method="post" class="form">
 
             <div class='formInput'>
                 <label>Nom :</label>
@@ -34,11 +34,23 @@ require 'Form.php';
                 <label>Dons et mécénas réalisés en €</label>
                 <input type='text' id="don" step="1.0" name='don' placeholder="...€" required>
             </div>
-            <button type="submit" name="button" class='subButton'>Calculez</button>
+            <div >
+                <button type="submit" name="button" class='subButton'>Calculez</button>
+            </div>
         </form>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+    //     $(function() {
+	// 	$('.subButton').click(function() {
+	// 		//show it's saving
+    //         $(this).after( imgs.load );
+
+	// 	var imgs = {
+	// 		'load': $('<img id="load" src="loading.gif" />')
+	// 	};
+	// });
     </script>
 </body>
 
